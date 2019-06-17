@@ -54,7 +54,7 @@ class G0V_HACK_MD_Script:
             self.input_direct_login()
             self.create_note_and_choose_template()
             self.modifyTemplate()
-            if not debugMode:
+            if debugMode:
                 self.deleteCurrentNote()
         except Exception as e:
             print e
