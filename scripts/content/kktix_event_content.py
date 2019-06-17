@@ -2,6 +2,8 @@
 
 title ="【vTaiwan 自由提案小松】"
 
+ticket_limit = "15"
+
 description = """
 <p><meta charset="utf-8" /></p>
 

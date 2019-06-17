@@ -47,7 +47,6 @@ class VTW_KKTIX_Script:
 
     def storeUrl(self):
         self.url = "https://vtaiwan.kktix.cc/events/" + self.driver.find_element_by_name("event[slug]").get_attribute("value")
-        print self.url
 
     def setTime(self):
         futureDay = FutureDay()
@@ -61,7 +60,7 @@ class VTW_KKTIX_Script:
         dateElements[0].click()
         time.sleep(self.SHORT_DELAY)
 
-        # 保險起見，先點擊當天的日期，再按下右鍵
+        # 保險起見，先點擊當天的日期，再按下右鍵(是說當日的23:40～24:00）會fail
         self.driver.find_element_by_css_selector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-bottom > div.datepicker-days > table > tfoot > tr:nth-child(1) > th").click()
         dateElements[0].click()
 
@@ -86,7 +85,7 @@ class VTW_KKTIX_Script:
 
     def setMetaData(self):
         self.driver.find_element_by_id("event_capacity").clear()
-        self.driver.find_element_by_id("event_capacity").send_keys("15")
+        self.driver.find_element_by_id("event_capacity").send_keys(kktix_event_content.ticket_limit)
         self.driver.find_element_by_id("event_location").send_keys("社會創新實驗中心(2樓A9會議室)".decode('utf8'))
         self.driver.find_element_by_id("event_location_address").send_keys("台北市大安區仁愛路三段99號".decode('utf8'))
         time.sleep(self.SHORT_DELAY)
@@ -102,6 +101,21 @@ class VTW_KKTIX_Script:
         self.driver.find_element_by_class_name("btn-primary").click()
         time.sleep(self.SHORT_DELAY)
 
+    def setTicket(self):
+        self.driver.find_element_by_css_selector("#new-event > div > div:nth-child(3) > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > div > button").click()
+        time.sleep(self.SHORT_DELAY)
+        self.driver.find_element_by_css_selector(
+            "#new-event > div > div:nth-child(3) > div > table > tbody > tr.edit.highlight > td > div.clearfix > div.control-group.col-3.col-last > div > label > input").click()
+        time.sleep(self.SHORT_DELAY)
+        element = self.driver.find_element_by_css_selector(
+            "#new-event > div > div:nth-child(3) > div > table > tbody > tr.edit.highlight > td > div.clearfix > div.control-group.col-2 > div > div > input")
+        element.clear()
+        element.send_keys(kktix_event_content.ticket_limit)
+        time.sleep(self.SHORT_DELAY)
+        self.driver.find_element_by_css_selector(
+            "#new-event > div > div:nth-child(3) > div > table > tbody > tr.edit.highlight > td > div.form-actions.plain.ng-scope > button.btn.btn-minor").click()
+        time.sleep(self.SHORT_DELAY)
+
     def goFormSetting(self):
         self.driver.find_element_by_class_name("btn-primary").click()
         time.sleep(self.SHORT_DELAY)
@@ -111,7 +125,14 @@ class VTW_KKTIX_Script:
         time.sleep(self.NORMAL_DELAY)
 
     def clickConfirm(self):
-        self.driver.find_element_by_class_name("btn btn-primary").click()
+        self.driver.find_element_by_class_name("btn-primary").click()
+        time.sleep(self.LONG_DELAY)
+
+    def publish(self):
+        time.sleep(self.NORMAL_DELAY)
+        self.driver.find_element_by_css_selector("body > div.page > div.sidebar > div.point-block.unpublished > div > a").click()
+        time.sleep(self.SHORT_DELAY)
+        self.driver.find_element_by_css_selector("body > div.page > div.sidebar > div.point-block.unpublished > div > ul > li > a").click()
         time.sleep(self.LONG_DELAY)
 
     def run(self, debugMode = False):
@@ -126,10 +147,12 @@ class VTW_KKTIX_Script:
             self.setMetaData()
             self.setDescription()
             self.goTicketSetting()
+            self.setTicket()
             self.goFormSetting()
             self.disableCheckBoxPhone()
             if not debugMode:
                 self.clickConfirm()
+                self.publish()
 
         except Exception as e:
             print e
@@ -138,6 +161,6 @@ class VTW_KKTIX_Script:
             return self.url
 
 if __name__ == "__main__":
-    script = VTW_KKTIX_Script(True)
-    script.run()
+    script = VTW_KKTIX_Script()
+    script.run(True)
 
