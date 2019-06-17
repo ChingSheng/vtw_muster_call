@@ -28,7 +28,6 @@ class G0V_HACK_MD_Script:
         time.sleep(self.LONG_DELAY)
         elements = self.driver.find_elements_by_class_name("menu-item")
         for element in elements:
-            print element.text
             if unicode(element.text) == u"vTaiwan小松":
                 element.click()
         time.sleep(self.NORMAL_DELAY)
@@ -53,15 +52,15 @@ class G0V_HACK_MD_Script:
             self.browse()
             self.input_direct_login()
             self.create_note_and_choose_template()
+            self.url = self.driver.current_url
             self.modifyTemplate()
             if debugMode:
                 self.deleteCurrentNote()
         except Exception as e:
             print e
         finally:
-            s = self.driver.current_url
             self.driver.close()
-            return s
+            return self.url
 
 if __name__ == "__main__":
     script = G0V_HACK_MD_Script()
