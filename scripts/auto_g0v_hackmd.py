@@ -40,12 +40,22 @@ class G0V_HACK_MD_Script:
         # time.sleep(self.NORMAL_DELAY)
         # time.sleep(self.LONG_DELAY)
 
-    def run(self):
+    def deleteCurrentNote(self):
+        self.driver.find_element_by_class_name("fa-unlock-alt").click()
+        time.sleep(self.NORMAL_DELAY)
+        self.driver.find_element_by_class_name("ui-delete-note").click()
+        time.sleep(self.NORMAL_DELAY)
+        self.driver.find_element_by_class_name("ui-delete-modal-confirm").click()
+        time.sleep(self.SHORT_DELAY)
+
+    def run(self, debugMode = False):
         try :
             self.browse()
             self.input_direct_login()
             self.create_note_and_choose_template()
             self.modifyTemplate()
+            if not debugMode:
+                self.deleteCurrentNote()
         except Exception as e:
             print e
         finally:
@@ -55,5 +65,5 @@ class G0V_HACK_MD_Script:
 
 if __name__ == "__main__":
     script = G0V_HACK_MD_Script()
-    result = script.run()
+    result = script.run(True)
     print result
