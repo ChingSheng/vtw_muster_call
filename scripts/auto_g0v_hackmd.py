@@ -17,13 +17,13 @@ class G0V_HACK_MD_Script:
         self.driver.get('https://g0v.hackmd.io/login')
         time.sleep(self.NORMAL_DELAY)
 
-    def input_direct_login(self):
+    def directLogin(self):
         self.driver.find_element_by_name("email").send_keys(account.hackmd_account)
         self.driver.find_element_by_name("password").send_keys(account.hackmd_password)
         self.driver.find_element_by_css_selector("input[formaction='https://g0v.hackmd.io/login']").click()
         time.sleep(self.LONG_DELAY)
 
-    def create_note_and_choose_template(self):
+    def createNoteAndChooseTemplate(self):
         self.driver.find_element_by_id("create-note-menu").click()
         time.sleep(self.LONG_DELAY)
         elements = self.driver.find_elements_by_class_name("menu-item")
@@ -50,8 +50,8 @@ class G0V_HACK_MD_Script:
     def run(self, debugMode = False):
         try :
             self.browse()
-            self.input_direct_login()
-            self.create_note_and_choose_template()
+            self.directLogin()
+            self.createNoteAndChooseTemplate()
             self.url = self.driver.current_url
             self.modifyTemplate()
             if debugMode:
