@@ -108,10 +108,11 @@ class VTW_KKTIX_Script:
 
     def disableCheckBoxPhone(self):
         self.driver.find_element_by_css_selector("#new-event > div > div:nth-child(4) > div > div.contact-block.ng-scope > div > div.col-4 > table > tbody > tr:nth-child(3) > td > label > input").click()
-        time.sleep(self.LONG_DELAY)
+        time.sleep(self.NORMAL_DELAY)
 
     def clickConfirm(self):
         self.driver.find_element_by_class_name("btn btn-primary").click()
+        time.sleep(self.LONG_DELAY)
 
     def run(self, debugMode = False):
         try:
