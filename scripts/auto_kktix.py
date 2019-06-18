@@ -3,12 +3,12 @@ import time
 
 from selenium.webdriver.common.keys import Keys
 
-from chromedriver.MyDriver import MyDriver
+from chromedriver.my_driver import MyDriver
 from content import kktix_event_content
 from setting import account
 from utils.FutureDay import FutureDay
 
-class VTW_KKTIX_Script:
+class VtwKKTixScript:
     SHORT_DELAY = 1
     NORMAL_DELAY = 2
     LONG_DELAY = 5
@@ -161,6 +161,6 @@ class VTW_KKTIX_Script:
             return self.url
 
 if __name__ == "__main__":
-    script = VTW_KKTIX_Script()
+    script = VtwKKTixScript()
     script.run(True)
 

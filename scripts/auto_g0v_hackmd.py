@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 import time
-from chromedriver.MyDriver import MyDriver
+from chromedriver.my_driver import MyDriver
 from setting import account
 
-class G0V_HACK_MD_Script:
+class G0vHackMdScript:
     SHORT_DELAY = 1
     NORMAL_DELAY = 2
     LONG_DELAY = 5
@@ -63,6 +63,6 @@ class G0V_HACK_MD_Script:
             return self.url
 
 if __name__ == "__main__":
-    script = G0V_HACK_MD_Script()
+    script = G0vHackMdScript()
     result = script.run(True)
     print result

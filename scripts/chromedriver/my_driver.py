@@ -1,5 +1,4 @@
 from selenium import webdriver
-
 import os
 
 class MyDriver:
