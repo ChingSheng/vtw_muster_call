@@ -17,13 +17,13 @@ class G0V_HACK_MD_Script:
         self.driver.get('https://g0v.hackmd.io/login')
         time.sleep(self.NORMAL_DELAY)
 
-    def directLogin(self):
+    def direct_login(self):
         self.driver.find_element_by_name("email").send_keys(account.hackmd_account)
         self.driver.find_element_by_name("password").send_keys(account.hackmd_password)
         self.driver.find_element_by_css_selector("input[formaction='https://g0v.hackmd.io/login']").click()
         time.sleep(self.LONG_DELAY)
 
-    def createNoteAndChooseTemplate(self):
+    def create_note_and_choose_template(self):
         self.driver.find_element_by_id("create-note-menu").click()
         time.sleep(self.LONG_DELAY)
         elements = self.driver.find_elements_by_class_name("menu-item")
@@ -33,13 +33,13 @@ class G0V_HACK_MD_Script:
         time.sleep(self.NORMAL_DELAY)
 
     # Need help!
-    def modifyTemplate(self):
+    def modify_template(self):
         pass
         # self.driver.find_element_by_class_name('fa-pencil').click()
         # time.sleep(self.NORMAL_DELAY)
         # time.sleep(self.LONG_DELAY)
 
-    def deleteCurrentNote(self):
+    def delete_current_note(self):
         self.driver.find_element_by_class_name("fa-unlock-alt").click()
         time.sleep(self.NORMAL_DELAY)
         self.driver.find_element_by_class_name("ui-delete-note").click()
@@ -47,15 +47,15 @@ class G0V_HACK_MD_Script:
         self.driver.find_element_by_class_name("ui-delete-modal-confirm").click()
         time.sleep(self.SHORT_DELAY)
 
-    def run(self, debugMode = False):
+    def run(self, debug_mode=False):
         try :
             self.browse()
-            self.directLogin()
-            self.createNoteAndChooseTemplate()
+            self.direct_login()
+            self.create_note_and_choose_template()
             self.url = self.driver.current_url
-            self.modifyTemplate()
-            if debugMode:
-                self.deleteCurrentNote()
+            self.modify_template()
+            if debug_mode:
+                self.delete_current_note()
         except Exception as e:
             print e
         finally:
