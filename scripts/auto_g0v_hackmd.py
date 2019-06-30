@@ -1,7 +1,12 @@
 # -*- coding: UTF-8 -*-
 import time
+
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
+
 from chromedriver.my_driver import MyDriver
 from setting import account
+from scripts.utils.future_day import FutureDay
 
 class G0vHackMdScript:
     SHORT_DELAY = 1
@@ -35,6 +40,11 @@ class G0vHackMdScript:
     # Need help!
     def modify_template(self):
         pass
+        # self.driver.find_element_by_class_name("fa-pencil").click()
+        # time.sleep(self.NORMAL_DELAY)
+        # element = self.driver.find_element_by_class_name("CodeMirror-line")
+        # element.click()
+        # time.sleep(self.NORMAL_DELAY)
 
     def delete_current_note(self):
         self.driver.find_element_by_class_name("fa-unlock-alt").click()
