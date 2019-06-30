@@ -10,7 +10,7 @@ class AutoSlackBot:
     def __init__(self, kktix_url, hack_md_url):
         self.kktix_url = kktix_url
         self.hack_md_url = hack_md_url
-        self.slack_bot_webhook = account.slack_bot_hook
+        self.slack_bot_webhook = account.slack_bot_hook_url
 
     def run(self):
         future_day = FutureDay()
