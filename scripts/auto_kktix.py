@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from chromedriver.my_driver import MyDriver
 from content import kktix_event_content
 from setting import account
-from utils.FutureDay import FutureDay
+from utils.future_day import FutureDay
 
 class VtwKKTixScript:
     SHORT_DELAY = 1
