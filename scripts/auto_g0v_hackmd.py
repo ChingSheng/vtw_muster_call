@@ -35,9 +35,6 @@ class G0vHackMdScript:
     # Need help!
     def modify_template(self):
         pass
-        # self.driver.find_element_by_class_name('fa-pencil').click()
-        # time.sleep(self.NORMAL_DELAY)
-        # time.sleep(self.LONG_DELAY)
 
     def delete_current_note(self):
         self.driver.find_element_by_class_name("fa-unlock-alt").click()

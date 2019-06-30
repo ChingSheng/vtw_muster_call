@@ -16,5 +16,5 @@ slack_bot = AutoSlackBot(kktix_url, hack_md_url)
 slack_bot.run()
 
 # TODO:
-    # Post on Facebook
-    # Post on vtw.link
+# Post on Facebook
+# Post on vtw.link

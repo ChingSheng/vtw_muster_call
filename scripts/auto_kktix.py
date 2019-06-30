@@ -1,12 +1,11 @@
 # -*- coding: UTF-8 -*-
 import time
-
 from selenium.webdriver.common.keys import Keys
-
 from chromedriver.my_driver import MyDriver
 from content import kktix_event_content
 from setting import account
 from utils.future_day import FutureDay
+
 
 class VtwKKTixScript:
     SHORT_DELAY = 1
@@ -46,11 +45,12 @@ class VtwKKTixScript:
         time.sleep(self.SHORT_DELAY)
 
     def store_url(self):
-        self.url = "https://vtaiwan.kktix.cc/events/" + self.driver.find_element_by_name("event[slug]").get_attribute("value")
+        self.url = "https://vtaiwan.kktix.cc/events/" + self.driver.find_element_by_name("event[slug]").get_attribute(
+            "value")
 
     def set_time(self):
         future_day = FutureDay()
-        days_Ahead = future_day.days_ahead(2) # 2 = Wed
+        days_Ahead = future_day.days_ahead(2)  # 2 = Wed
         next_wednesday = future_day.next_weekend(2).strftime("%Y/%m/%d")
         print days_Ahead
         print next_wednesday
@@ -61,7 +61,8 @@ class VtwKKTixScript:
         time.sleep(self.SHORT_DELAY)
 
         # 保險起見，先點擊當天的日期，再按下右鍵(是說當日的23:40～24:00）會fail
-        self.driver.find_element_by_css_selector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-bottom > div.datepicker-days > table > tfoot > tr:nth-child(1) > th").click()
+        self.driver.find_element_by_css_selector(
+            "body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-bottom > div.datepicker-days > table > tfoot > tr:nth-child(1) > th").click()
         date_elements[0].click()
 
         time.sleep(self.SHORT_DELAY)
@@ -93,7 +94,7 @@ class VtwKKTixScript:
     def set_description(self):
         self.driver.find_element_by_class_name("cke_button__source").click()
         time.sleep(self.SHORT_DELAY)
-        body_string =kktix_event_content.description.format(self.hackMdUrl, self.hackMdUrl)
+        body_string = kktix_event_content.description.format(self.hackMdUrl, self.hackMdUrl)
         self.driver.find_element_by_class_name("cke_contents_ltr").send_keys((body_string).decode('utf8'))
         time.sleep(self.SHORT_DELAY)
 
@@ -102,7 +103,8 @@ class VtwKKTixScript:
         time.sleep(self.SHORT_DELAY)
 
     def set_ticket(self):
-        self.driver.find_element_by_css_selector("#new-event > div > div:nth-child(3) > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > div > button").click()
+        self.driver.find_element_by_css_selector(
+            "#new-event > div > div:nth-child(3) > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > div > button").click()
         time.sleep(self.SHORT_DELAY)
         self.driver.find_element_by_css_selector(
             "#new-event > div > div:nth-child(3) > div > table > tbody > tr.edit.highlight > td > div.clearfix > div.control-group.col-3.col-last > div > label > input").click()
@@ -121,7 +123,8 @@ class VtwKKTixScript:
         time.sleep(self.SHORT_DELAY)
 
     def disable_check_box_phone(self):
-        self.driver.find_element_by_css_selector("#new-event > div > div:nth-child(4) > div > div.contact-block.ng-scope > div > div.col-4 > table > tbody > tr:nth-child(3) > td > label > input").click()
+        self.driver.find_element_by_css_selector(
+            "#new-event > div > div:nth-child(4) > div > div.contact-block.ng-scope > div > div.col-4 > table > tbody > tr:nth-child(3) > td > label > input").click()
         time.sleep(self.NORMAL_DELAY)
 
     def click_confirm(self):
@@ -130,9 +133,11 @@ class VtwKKTixScript:
 
     def publish(self):
         time.sleep(self.NORMAL_DELAY)
-        self.driver.find_element_by_css_selector("body > div.page > div.sidebar > div.point-block.unpublished > div > a").click()
+        self.driver.find_element_by_css_selector(
+            "body > div.page > div.sidebar > div.point-block.unpublished > div > a").click()
         time.sleep(self.SHORT_DELAY)
-        self.driver.find_element_by_css_selector("body > div.page > div.sidebar > div.point-block.unpublished > div > ul > li > a").click()
+        self.driver.find_element_by_css_selector(
+            "body > div.page > div.sidebar > div.point-block.unpublished > div > ul > li > a").click()
         time.sleep(self.LONG_DELAY)
 
     def run(self, debug_mode=False):
@@ -160,7 +165,7 @@ class VtwKKTixScript:
             self.driver.close()
             return self.url
 
+
 if __name__ == "__main__":
     script = VtwKKTixScript()
     script.run(True)
-
