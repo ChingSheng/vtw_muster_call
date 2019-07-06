@@ -3,7 +3,7 @@ vtw 每週開活動小幫手 (vtw_muster_call)
 ### 環境設置
 * Python 2.7
 * 目前需要再Pycharm上面開啟（import module的問題，晚些時間修理一下）
-* 當前使用的是[ChromeDriver 75.0.3770.90](http://chromedriver.chromium.org/downloads) (已放在專案中)
+* 作業環境需要有Chrome，當前使用的是[ChromeDriver 75.0.3770.90](http://chromedriver.chromium.org/downloads) (已放在專案中)
 
 ### 使用方式
 1. 用pycharm 開啟此專案
