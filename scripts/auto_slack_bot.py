@@ -1,4 +1,7 @@
 # -*- coding: UTF-8 -*-
+import sys
+sys.path.append('../')
+
 from scripts.setting import account
 from scripts.content import slack_post_content
 import requests

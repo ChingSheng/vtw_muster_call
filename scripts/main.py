@@ -1,4 +1,6 @@
 # -*- coding: UTF-8 -*-
+import sys
+sys.path.append('../')
 
 from scripts.auto_g0v_hackmd import G0vHackMdScript
 from scripts.auto_kktix import VtwKKTixScript

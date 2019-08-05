@@ -1,12 +1,10 @@
 # -*- coding: UTF-8 -*-
 import time
-
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.keys import Keys
+import sys
+sys.path.append('../')
 
 from chromedriver.my_driver import MyDriver
 from setting import account
-from scripts.utils.future_day import FutureDay
 
 class G0vHackMdScript:
     SHORT_DELAY = 1

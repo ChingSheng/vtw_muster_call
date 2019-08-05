@@ -1,4 +1,7 @@
 # -*- coding: UTF-8 -*-
+import sys
+sys.path.append('../')
+
 import time
 from selenium.webdriver.common.keys import Keys
 from chromedriver.my_driver import MyDriver
