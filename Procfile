@@ -1,1 +1,1 @@
-vtw_proc: python script/main.py
+vtw_proc: python vtw_muster_call/script/main.py
