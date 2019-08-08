@@ -1,1 +1,1 @@
-vtw_proc: ls -alh
+vtw_proc: python scripts/main.py
