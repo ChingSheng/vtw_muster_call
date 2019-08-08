@@ -20,6 +20,8 @@ class VtwKKTixScript:
         myDriver = MyDriver()
         self.hackMdUrl = hackMdUrl
         self.driver = myDriver.getDriver()
+        self.driver.set_page_load_timeout(30)
+        self.driver.set_script_timeout(30)
 
     def browse(self):
         self.driver.get('https://kktix.com/users/sign_in')
@@ -29,7 +31,11 @@ class VtwKKTixScript:
         self.driver.find_element_by_id("user_login").send_keys(account.kktix_account)
         self.driver.find_element_by_id("user_password").send_keys(account.kktix_password)
         time.sleep(self.SHORT_DELAY)
-        self.driver.find_element_by_name("commit").click()
+        try:
+            self.driver.find_element_by_name("commit").click()
+        except:
+            print 'go vtaiwan page timeout?'
+            self.driver.execute_script('window.stop()')
         time.sleep(self.SHORT_DELAY)
 
     def browse_open_activity(self):
