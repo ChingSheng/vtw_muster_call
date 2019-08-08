@@ -7,6 +7,7 @@ class MyDriver:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--lang=zh-tw')
+        chrome_options.add_argument('headless')
         current_path = os.path.abspath(__file__)
         father_path = os.path.abspath(os.path.dirname(current_path) + os.path.sep + ".")
         self.driver = webdriver.Chrome(father_path+'/chromedriver', options=chrome_options)
