@@ -12,12 +12,12 @@ from auto_slack_bot import AutoSlackBot
 # def timed_job():
 
 # print 'This job is run every three minutes.'
-# hack_md_script = G0vHackMdScript()
-# hack_md_url = hack_md_script.run()
-vtw_script = VtwKKTixScript("dd")
-kktix_url = vtw_script.run(True)
-# print hack_md_url
-print kktix_url
+hack_md_script = G0vHackMdScript()
+hack_md_url = hack_md_script.run()
+# vtw_script = VtwKKTixScript(hack_md_url)
+# kktix_url = vtw_script.run(True)
+print hack_md_url
+# print kktix_url
 
 # slack_bot = AutoSlackBot(kktix_url, hack_md_url)
 # slack_bot.run()
