@@ -14,6 +14,7 @@ class MyDriver:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.binary_location = os.getenv('GOOGLE_CHROME_BIN', None)
         chrome_options.add_argument('--lang=zh-tw')
+        chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
 
