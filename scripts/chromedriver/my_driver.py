@@ -4,13 +4,20 @@ import os
 
 class MyDriver:
     def __init__(self):
+        # chrome_options = webdriver.ChromeOptions()
+        # chrome_options.add_argument('--disable-gpu')
+        # chrome_options.add_argument('--lang=zh-tw')
+        # chrome_options.add_argument('headless')
+        # current_path = os.path.abspath(__file__)
+        # father_path = os.path.abspath(os.path.dirname(current_path) + os.path.sep + ".")
+        # self.driver = webdriver.Chrome(father_path+'/chromedriver', options=chrome_options)
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--disable-gpu')
+        chrome_options.binary_location = os.getenv('GOOGLE_CHROME_BIN', None)
         chrome_options.add_argument('--lang=zh-tw')
-        chrome_options.add_argument('headless')
-        current_path = os.path.abspath(__file__)
-        father_path = os.path.abspath(os.path.dirname(current_path) + os.path.sep + ".")
-        self.driver = webdriver.Chrome(father_path+'/chromedriver', options=chrome_options)
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
+
+        driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=os.getenv('CHROMEDRIVER_PATH', None))
 
     def getDriver(self):
         return self.driver
