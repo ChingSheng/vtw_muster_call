@@ -13,12 +13,13 @@ class MyDriver:
         # self.driver = webdriver.Chrome(father_path+'/chromedriver', options=chrome_options)
         chrome_options = webdriver.ChromeOptions()
         chrome_options.binary_location = os.getenv('GOOGLE_CHROME_BIN', None)
-        chrome_options.add_argument('--lang=zh-tw')
+        chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--lang=zh-tw')
 
-        driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=os.getenv('CHROMEDRIVER_PATH', None))
+        self.driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=os.getenv('CHROMEDRIVER_PATH', None))
 
     def getDriver(self):
         return self.driver
