@@ -7,23 +7,22 @@ from scripts.auto_g0v_hackmd import G0vHackMdScript
 from scripts.auto_kktix import VtwKKTixScript
 from auto_slack_bot import AutoSlackBot
 
-# sched = BlockingScheduler()
+def timed_job():
+    print 'This job is run every three minutes.'
+    hack_md_script = G0vHackMdScript()
+    hack_md_url = hack_md_script.run()
+    # vtw_script = VtwKKTixScript(hack_md_url)
+    # kktix_url = vtw_script.run(True)
+    print hack_md_url
+    # print kktix_url
 
-# def timed_job():
+    # slack_bot = AutoSlackBot(kktix_url, hack_md_url)
+    # slack_bot.run()
 
-# print 'This job is run every three minutes.'
-hack_md_script = G0vHackMdScript()
-hack_md_url = hack_md_script.run()
-# vtw_script = VtwKKTixScript(hack_md_url)
-# kktix_url = vtw_script.run(True)
-print hack_md_url
-# print kktix_url
+sched = BlockingScheduler(timezone='Asia/Taipei')
+sched.add_job(timed_job, 'cron', day_of_week='sat', hour=18, minute=55)
+sched.start()
 
-# slack_bot = AutoSlackBot(kktix_url, hack_md_url)
-# slack_bot.run()
-
-# sched.add_job(timed_job, 'interval', minutes=3)
-# sched.start()
 # TODO:
 # Post on Facebook
 # Post on vtw.link
