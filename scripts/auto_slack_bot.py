@@ -20,7 +20,7 @@ class AutoSlackBot:
         payload = {
             "icon_emoji": ":vtaiwan:",
             "username": slack_post_content.bot_name.decode('utf8'),
-            "text": slack_post_content.title_text.format(self.kktix_url, self.hack_md_url).decode('utf8'),
+            "text": slack_post_content.title_text.format(self.kktix_url, self.hack_md_url, slack_post_content.jitsi_link).decode('utf8'),
             "attachments": [
                 {
                     "color": "#36a64f",
@@ -34,6 +34,12 @@ class AutoSlackBot:
                     "title": slack_post_content.hack_md_title.decode('utf8'),
                     "title_link": self.hack_md_url,
                     "image_url": slack_post_content.hack_md_thumb_url
+                },
+                {
+                    "color": "#36a64f",
+                    "title": slack_post_content.jitsi_title.decode('utf8'),
+                    "title_link": slack_post_content.jitsi_link,
+                    "thumb_url": slack_post_content.jitsi_md_thumb_url
                 }
             ]
         }
