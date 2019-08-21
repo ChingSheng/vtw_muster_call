@@ -4,6 +4,7 @@ sys.path.append('../')
 
 from scripts.setting import account
 from scripts.content import slack_post_content
+from utils.future_day import FutureDay
 import requests
 import json
 
@@ -15,6 +16,10 @@ class AutoSlackBot:
         self.slack_bot_webhook = account.slack_bot_hook_url
 
     def run(self):
+        future_day = FutureDay()
+        wednesday_offset = 2
+        next_wednesday = future_day.next_weekend(wednesday_offset).strftime("%Y/%m/%d")
+
         dict_headers = {'Content-type': 'application/json'}
 
         payload = {
@@ -26,12 +31,12 @@ class AutoSlackBot:
                     "color": "#36a64f",
                     "title": slack_post_content.kktix_title.decode('utf8'),
                     "title_link": self.kktix_url,
-                    "text": slack_post_content.kktix_description.decode('utf8'),
+                    "text": slack_post_content.kktix_description.format(next_wednesday).decode('utf8'),
                     "thumb_url": slack_post_content.kktix_thumb_url
                 },
                 {
                     "color": "#36a64f",
-                    "title": slack_post_content.hack_md_title.decode('utf8'),
+                    "title": slack_post_content.hack_md_title.format(next_wednesday).decode('utf8'),
                     "title_link": self.hack_md_url,
                     "image_url": slack_post_content.hack_md_thumb_url
                 },
