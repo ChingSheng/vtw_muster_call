@@ -20,7 +20,7 @@ def timed_job():
     slack_bot.run()
 
 sched = BlockingScheduler(timezone='Asia/Taipei')
-sched.add_job(timed_job, 'cron', day_of_week='wed', hour=21, minute=30)
+sched.add_job(timed_job, 'cron', day_of_week='wed', hour=23, minute=50)
 sched.start()
 
 # TODO:
