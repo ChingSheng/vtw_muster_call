@@ -45,7 +45,7 @@ class G0vHackMdScript:
         # time.sleep(self.NORMAL_DELAY)
 
     def delete_current_note(self):
-        self.driver.find_element_by_class_name("fa-unlock-alt").click()
+        self.driver.find_element_by_class_name("ui-menu").click()
         time.sleep(self.NORMAL_DELAY)
         self.driver.find_element_by_class_name("ui-delete-note").click()
         time.sleep(self.NORMAL_DELAY)
