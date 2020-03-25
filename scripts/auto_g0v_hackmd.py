@@ -27,13 +27,17 @@ class G0vHackMdScript:
         time.sleep(self.LONG_DELAY)
 
     def create_note_and_choose_template(self):
-        self.driver.find_element_by_id("create-note-menu").click()
+        self.driver.find_element_by_class_name("sidenav-item-action").click()
         time.sleep(self.LONG_DELAY)
-        elements = self.driver.find_elements_by_class_name("menu-item")
+        self.driver.find_element_by_css_selector("#sidebar > div.ui-next-sidenav-inner > div.ui-next-sidenav-create.sidenav-item > div > div.menu-container.base-menu.position-bottom > div:nth-child(2)").click()
+        time.sleep(self.NORMAL_DELAY)
+        elements = self.driver.find_elements_by_class_name("list-group-item-heading")
         for element in elements:
             if unicode(element.text) == u"vTaiwan小松":
                 element.click()
-        time.sleep(self.NORMAL_DELAY)
+        time.sleep(self.SHORT_DELAY)
+        self.driver.find_element_by_css_selector("#templateModal > div > div > div.modal-body > div > div.col-sm-4.template-list-container > div > button.btn.btn-primary.ui-use-template-btn.hidden-xs").click()
+        time.sleep(self.LONG_DELAY)
 
     # Need help!
     def modify_template(self):
