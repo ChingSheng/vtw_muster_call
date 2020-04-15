@@ -81,7 +81,7 @@ class VtwKKTixScript:
         date_elements[0].send_keys(Keys.ENTER)
         date_elements[0].send_keys(Keys.TAB)
         time_elements[0].send_keys(Keys.BACK_SPACE)
-        time_elements[0].send_keys("19:00")
+        time_elements[0].send_keys("20:00")
         time_elements[0].send_keys(Keys.ENTER)
         time.sleep(self.SHORT_DELAY)
 
